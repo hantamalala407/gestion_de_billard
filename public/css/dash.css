@@ -1,0 +1,51 @@
+.form-label {
+    font-weight: bold;
+    color: white; /* Couleur de l'étiquette */
+    margin-bottom: 0.5rem;
+}
+
+.form-select {
+    background-color: #333; /* Fond sombre */
+    color: white; /* Couleur du texte */
+    border: 1px solid #444; /* Bordure sombre */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 0.5rem; /* Espacement interne */
+    appearance: none; /* Enlever le style par défaut du sélecteur */
+    -webkit-appearance: none; /* Pour Safari */
+    -moz-appearance: none; /* Pour Firefox */
+    width: 100%; /* Largeur à 100% */
+    cursor: pointer; /* Changer le curseur */
+}
+
+/* Ajouter une flèche personnalisée */
+.form-select::after {
+    content: "▼"; /* Flèche vers le bas */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white; /* Couleur de la flèche */
+    pointer-events: none; /* Ne pas interférer avec les clics */
+}
+
+/* Styles pour le focus */
+.form-select:focus {
+    outline: none; /* Enlever le contour par défaut */
+    border-color: #007bff; /* Couleur de la bordure au focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Légère ombre */
+}
+
+/* Styles pour les options du menu déroulant */
+.form-select option {
+    background-color: #333; /* Fond sombre */
+    color: white; /* Couleur du texte */
+}
+
+.list-group {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.title-spacing {
+    margin-right: 20px; /* Ajustez la valeur selon vos besoins */
+}
