@@ -47,6 +47,14 @@
             </div>
         </div-->
         <div class="row justify-content-center">
+
+          @if (session('status'))
+          <div class="alert alert-success" role="alert" style="width: 100%; text-align: center">
+              {{ session('status') }}
+          </div>
+          <br>
+      @endif
+
             <h1 class="container text-center">Ajouter un joueur</h1>
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">

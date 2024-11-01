@@ -41,8 +41,8 @@
         </form>
     </div-->
 
-    <div class="auth-container" style="height: 550px;">
-        <form action="{{ route('register') }}" method="POST">
+    <div class="auth-container" style="height: 630px;">
+        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h2>Registre</h2>
             <div class="inputBox">
@@ -71,15 +71,26 @@
             </div>
             <div class="inputBox">
                 <input type="password" id="password_confirmation" name="password_confirmation" required>
-                <span for="password_confirmation">Confirm Password:</span>
+                <span for="password_confirmation">Confirmer le mot de passe:</span>
                 <i></i>
             </div>
+
+            <div class="inputBox">
+                <input type="file" id="image" name="image" accept="image/*">
+                <span for="image">Télécharger une image:</span>
+                <i></i>
+                @error('image')
+                    <!--span class="error">{{ $message }}</span-->
+                @enderror
+            </div>
+
             <button type="submit">S'enregistrer</button>
             <div class="links">
                 <p>Avez-vous déjà un compte? <a href="{{ route('login') }}">Se connecter</a></p>
             </div>
         </form>
     </div>
+    
 
 </body>
 </html>

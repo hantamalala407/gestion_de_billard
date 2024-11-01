@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    /*public function up(): void
     {
         Schema::create('joueurs', function (Blueprint $table) {
             $table->id();
@@ -18,7 +18,20 @@ return new class extends Migration
             $table->string('email');
             $table->timestamps();
         });
-    }
+    }*/
+
+    public function up()
+{
+    Schema::create('joueurs', function (Blueprint $table) {
+        $table->id();
+        $table->string('nom');
+        $table->string('prenom');
+        $table->string('email')->unique();
+        $table->timestamps();
+    });
+
+}
+
 
     /**
      * Reverse the migrations.
@@ -26,5 +39,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('joueurs');
+
     }
 };

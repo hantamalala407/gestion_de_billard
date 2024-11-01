@@ -15857,8 +15857,8 @@ code {
 .text-small {
   font-size: 12px; }
 
-.flex-grow {
-  flex-grow: 1; }
+/*.flex-grow {
+  flex-grow: 1; }*/
 
 .font-weight-light {
   font-weight: 300; }

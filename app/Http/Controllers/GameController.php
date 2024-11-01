@@ -10,14 +10,13 @@ class GameController extends Controller
 
     public function index()
     {
-        //$game = Game::all();
-        $games = Game::paginate(3);
+        
+        $games = Game::all();
+
+        //$games = Game::paginate(3);
+        
         return view('games.list', compact('games'));
 
-        /*$totalGames = Game::count();
-        dd($totalGames); // Affiche la valeur
-        return view('index', compact('totalGames'));*/
-        $totalGames = Game::count();
     }
 
     public function create()
@@ -26,7 +25,7 @@ class GameController extends Controller
     }
 
     //public function store(Request $request)
-    public function list(Request $request)
+    /*public function list(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -34,12 +33,28 @@ class GameController extends Controller
             'end_time' => 'nullable|date',
             //'status' => 'in:upcomming,ongoing,finished'
             'status' => 'required|string',
+            //'date' => 'required|date',
         ]);
 
         Game::create($request->all());
 
         return redirect()->route('games.create')->with('status', 'Partie créée avec succès.');
-    }
+    }*/
+
+    public function list(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'start_time' => 'required|date',
+        'end_time' => 'nullable|date|after:start_time',
+        'status' => 'required|string',
+    ]);
+
+    // Créer une nouvelle partie avec les données validées
+    Game::create($request->only('title', 'start_time', 'end_time', 'status'));
+
+    return redirect()->route('games.create')->with('status', 'Partie créée avec succès.');
+}
 
 
     public function show(Game $game)
@@ -66,6 +81,7 @@ class GameController extends Controller
             'start_time' => 'required|date',
             'end_time' => 'nullable|date|after:start_time',
             'status' => 'required|string',
+            //'date' => 'required|date',
         ]);
     
         // Mettre à jour les données
@@ -91,22 +107,13 @@ class GameController extends Controller
     }
 
     
-    public function search(Request $request)
+    /*public function total()
     {
+        $totalGames = Game::count();
+        return view('index', compact('totalGames'));
+    }*/
 
-        dd($request->all());
 
-        $request->validate([
-            'query' => 'required|string|max:255',
-        ]);
-
-        $query = $request->input('query');
-
-        // Effectuer la recherche
-        $games = Game::where('title', 'LIKE', "%{$query}%")->paginate(3);
-
-        return view('games.list', compact('games', 'query'));
-    }
 
 
 }

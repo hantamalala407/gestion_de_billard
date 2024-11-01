@@ -5,7 +5,7 @@ const userChart = new Chart(ctx, {
     data: {
         labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'], // Mois
         datasets: [{
-            label: 'Nouveaux Utilisateurs',
+            label: 'Nouveaux Joueurs',
             data: [12, 19, 3, 5, 5, 3, 7, 12, 9, 7, 14, 15], // Données des nouveaux utilisateurs
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'red',
@@ -23,13 +23,18 @@ const userChart = new Chart(ctx, {
 
 
 
-const gameCtx = document.getElementById('gameChart').getContext('2d');
+
+
+
+
+
+/*const gameCtx = document.getElementById('gameChart').getContext('2d');
 const gameChart = new Chart(gameCtx, {
 type: 'line', // Type de graphique
 data: {
-    labels: ['Jeu A', 'Jeu B', 'Jeu C', 'Jeu D'], // Noms des jeux
+    labels: ['Partie A', 'Partie B', 'Partie C', 'Partie D'], // Noms des jeux
     datasets: [{
-        label: 'Jeux les Plus Joués',
+        label: 'Partie les Plus Joués',
         data: [300, 50, 100, 40], // Données des jeux
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -60,31 +65,4 @@ const data = [
     'Kiwi',
     'Lemon',
     'Mango'
-];
-
-function filterResults() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '';
-
-    if (input.length > 0) {
-        const filteredData = data.filter(item => item.toLowerCase().includes(input));
-
-        filteredData.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.textContent = item;
-            resultsContainer.appendChild(li);
-        });
-
-        resultsContainer.style.display = filteredData.length > 0 ? 'block' : 'none';
-    } else {
-        resultsContainer.style.display = 'none';
-    }
-}
-
-document.addEventListener('click', (event) => {
-    if (!event.target.closest('.search')) {
-        document.getElementById('results').style.display = 'none';
-    }
-});
+];*/

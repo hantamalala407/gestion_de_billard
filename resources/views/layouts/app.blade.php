@@ -25,6 +25,8 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
         <!-- mon style -->
         <link rel="stylesheet" href="{{ asset('css/dash.css') }}">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
             
     </head>
     <body>
@@ -59,8 +61,8 @@
                 </a>
                 <div class="collapse" id="auth">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/dashboard/ajout"> Ajout </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="/dashboard/liste"> Liste </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/dashboard/ajout"> Ajout d'un joueur </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/dashboard/liste"> Liste des joueurs </a></li>
                     <!--li class="nav-item"> <a class="nav-link" href="/dashboard/modification"> Modification </a></li>
                     <li class="nav-item"> <a class="nav-link" href="/dashboard/liste"> Supression </a></li-->
                   </ul>
@@ -83,20 +85,12 @@
                 </div>
               </li>
               
-              <li class="nav-item menu-items">
+              <!--li class="nav-item menu-items">
                 <a class="nav-link" href="/dashboard/statistique">
                   <span class="menu-icon">
                     <i class="mdi mdi-chart-bar"></i>
                   </span>
                   <span class="menu-title">Statistiques</span>
-                </a>
-              </li>
-              <!--li class="nav-item menu-items">
-                <a class="nav-link" href="pages/icons/mdi.html">
-                  <span class="menu-icon">
-                    <i class="mdi mdi-contacts"></i>
-                  </span>
-                  <span class="menu-title">Icons</span>
                 </a>
               </li-->
             </ul>
@@ -149,7 +143,14 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                       <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="{{ asset('images/education.jpg') }}" alt="">
+                        <!--img class="img-xs rounded-circle" src="{{ asset('images/education.jpg') }}" alt=""-->
+
+                        @if(Auth::user()->image)
+                            <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="{{ Auth::user()->name }}" class="img-xs rounded-circle" style="max-width: 200px;">
+                        @else
+                            <p>Aucune image disponible.</p>
+                        @endif   
+                                             
                         <p class="mb-0 d-none d-sm-block navbar-profile-name">
                           {{ Auth::user()->name }}
                         </p>
@@ -160,7 +161,7 @@
                       <h6 class="p-3 mb-0">Profil</h6>
                       <div class="dropdown-divider"></div>
     
-                      <a class="dropdown-item preview-item" href="#">
+                      <a class="dropdown-item preview-item" href="/parametre/parametre">
                         <div class="preview-thumbnail">
                           <div class="preview-icon bg-dark rounded-circle">
                             <i class="mdi mdi-settings text-success"></i>
@@ -231,6 +232,8 @@
         <!-- End custom js for this page -->
 
         <script src="/js/script.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     
       </body>
 </html>

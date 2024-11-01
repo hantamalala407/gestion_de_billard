@@ -122,7 +122,14 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                      <img class="img-xs rounded-circle" src="../../images/education.jpg" alt="">
+                      <!--img class="img-xs rounded-circle" src="../../images/education.jpg" alt=""-->
+
+                      @if(Auth::user()->image)
+                          <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="{{ Auth::user()->name }}" class="img-xs rounded-circle" style="max-width: 200px;">
+                      @else
+                          <p>Aucune image disponible.</p>
+                      @endif
+
                       <p class="mb-0 d-none d-sm-block navbar-profile-name">
                         {{ Auth::user()->name }}
                       </p>
@@ -133,7 +140,7 @@
                     <h6 class="p-3 mb-0">Profil</h6>
                     <div class="dropdown-divider"></div>
   
-                    <a class="dropdown-item preview-item" href="#">
+                    <a class="dropdown-item preview-item" href="../../parametre/parametre">
                       <div class="preview-thumbnail">
                         <div class="preview-icon bg-dark rounded-circle">
                           <i class="mdi mdi-settings text-success"></i>
@@ -179,7 +186,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Augmentation des joueurs</h4>
                     <!--canvas id="lineChart" style="height:250px"></canvas-->
-                    <canvas id="userChart" style="width: 100%; height: 300px;"></canvas>
+                    <canvas id="joueurChart" style="width: 100%; height: 300px;"></canvas>
                   </div>
                 </div>
               </div>
@@ -188,7 +195,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Augmentation des parties joués</h4>
                     <!--canvas id="barChart" style="height:230px"></canvas-->
-                    <canvas id="gameChart" style="width: 100%; height: 300px;"></canvas>
+                    <canvas id="usersChart" style="width: 100%; height: 300px;"></canvas>
                   </div>
                 </div>
               </div>
@@ -221,6 +228,38 @@
     <script src="/js/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+ 
+    
+  
+    <script>
+      const ctx = document.getElementById('usersChart').getContext('2d');
+      const usersData = @json($users);
+
+      const months = Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('fr-FR', { month: 'long' }));
+      const data = months.map((month, index) => usersData[index + 1] || 0); // index + 1 pour correspondre aux mois
+
+      const chart = new Chart(ctx, {
+          type: 'bar', // ou 'line', 'pie', etc.
+          data: {
+              labels: months,
+              datasets: [{
+                  label: 'Nombre d\'utilisateurs par mois',
+                  data: data,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  </script>
 
 
 

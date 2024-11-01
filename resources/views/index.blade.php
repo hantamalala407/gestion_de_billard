@@ -54,8 +54,8 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/dashboard/ajout"> Ajout </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/dashboard/liste"> Liste </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/dashboard/ajout"> Ajout d'un joueur </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/dashboard/liste"> Liste des joueurs</a></li>
               </ul>
             </div>
           </li>
@@ -76,14 +76,15 @@
             </div>
           </li>
 
-          <li class="nav-item menu-items">
+          <!--li class="nav-item menu-items">
             <a class="nav-link" href="/dashboard/statistique">
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
               <span class="menu-title">Statistiques</span>
             </a>
-          </li>
+          </li-->
+
         </ul>
       </nav>
       <!-- partial -->
@@ -134,9 +135,17 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="images/education.jpg" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">
-                      {{ Auth::user()->name }}
+                    <!--img class="img-xs rounded-circle" src="images/education.jpg" alt=""-->
+                    
+
+                    @if(Auth::user()->image)
+                        <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="{{ Auth::user()->name }}" class="img-xs rounded-circle" style="max-width: 200px;">
+                    @else
+                        <p>Aucune image disponible.</p>
+                    @endif
+                    
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">          
+                        {{ Auth::user()->name }}
                     </p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
@@ -145,7 +154,7 @@
                   <h6 class="p-3 mb-0">Profil</h6>
                   <div class="dropdown-divider"></div>
 
-                  <a class="dropdown-item preview-item" href="#">
+                  <a class="dropdown-item preview-item" href="/parametre/parametre">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-settings text-success"></i>
@@ -183,14 +192,16 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+
+
+              <!--div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           
-                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalJoueurs ?? 0 }}</p>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalJoueurs ?? 'non défini' }}</p>
 
                         </div>
                       </div>
@@ -203,15 +214,17 @@
                     <h6 class="text-muted font-weight-normal">Total des joueurs</h6>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+              </div-->
+
+              
+              <!--div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                             
-                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalGames ?? 0 }}</p>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalGames ?? 'non défini' }}</p>
 
                         </div>
                       </div>
@@ -224,7 +237,33 @@
                     <h6 class="text-muted font-weight-normal">Total des parties</h6>
                   </div>
                 </div>
+              </div-->
+
+              
+
+
+              <div class="row">
+                <div class="col-lg-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Augmentation des joueurs</h4>
+                      <!--canvas id="lineChart" style="height:250px"></canvas-->
+                      <canvas id="joueurChart" style="width: 100%; height: 300px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Augmentation des parties joués</h4>
+                      <!--canvas id="barChart" style="height:230px"></canvas-->
+                      <canvas id="usersChart" style="width: 100%; height: 300px;"></canvas>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
             </div>
           
         </div>
@@ -257,5 +296,66 @@
 
     <script src="/js/script.js"></script>
 
-  </body>
+    
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+<script>
+
+  const data = @json($data);
+
+  // Graphique des joueurs
+  const joueurCtx = document.getElementById('joueurChart').getContext('2d');
+  const joueurChart = new Chart(joueurCtx, {
+      type: 'line',
+      data: {
+          labels: data.months,
+          datasets: [{
+              label: 'Total des joueurs',
+              data: data.players,
+              borderColor: 'red',
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              fill: true
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              x: { type: 'category' },
+              y: { beginAtZero: true }
+          }
+      }
+  });
+
+  // Graphique des parties jouées
+  const usersCtx = document.getElementById('usersChart').getContext('2d');
+  const usersChart = new Chart(usersCtx, {
+      type: 'bar',
+      data: {
+          labels: data.months,
+          datasets: [{
+              label: 'Total des parties jouées',
+              data: data.gamesPlayed,
+              borderColor: 'green',
+              backgroundColor: 'rgba(12, 225, 192, 0.2)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          /*scales: {
+              x: { title: { display: true, text: 'Mois' } },
+              y: { beginAtZero: true, title: { display: true, text: 'Total des parties jouées' } }
+          }*/
+      }
+  });
+
+
+  window.onunload = function () { void (0); };
+
+
+</script>
+
+
+</body>
 </html>

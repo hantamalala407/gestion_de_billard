@@ -49,3 +49,17 @@
 .title-spacing {
     margin-right: 20px; /* Ajustez la valeur selon vos besoins */
 }
+
+/*  */
+#list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#list .noms{
+    /*font-size: 1.2em;*//* lasa miangeza ilay soratra */
+    /*padding: 10px;*/
+    /*border-bottom: 1px solid black;*/
+    /*animation: fadeIn 0.5s ease-in-out;*/
+}

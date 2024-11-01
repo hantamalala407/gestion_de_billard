@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('players', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('game_id')->constrained()->onDelete('cascade');
-            $table->integer('score')->default(0);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('image')->nullable(); // Ajoute une colonne pour l'image
         });
+
     }
 
     /**
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('image'); // Supprime la colonne image
+        });
     }
 };

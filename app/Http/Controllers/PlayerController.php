@@ -11,7 +11,10 @@ class PlayerController extends Controller
 
     public function liste_joueur(){
         //maka ny anarana rehetra ao anaty base
-        $joueurs = Joueur::paginate(3);
+        //$joueurs = Joueur::paginate(3);
+        
+        $joueurs = Joueur::all();
+        
         return view('dashboard.liste', compact('joueurs'));
 
     }
@@ -66,27 +69,11 @@ class PlayerController extends Controller
 
     }
 
-    public function index() {
+   /* public function show()
+    {
         $totalJoueurs = Joueur::count(); 
         return view('index', compact('totalJoueurs')); 
-    }
-
-    public function search(Request $request) {
-        $request->validate([
-            'query' => 'required|string|max:255',
-        ]);
-    
-        $query = $request->input('query');
-        $joueurs = Joueur::where('nom', 'LIKE', "%{$query}%")
-                         ->orWhere('prenom', 'LIKE', "%{$query}%")
-                         ->orWhere('email', 'LIKE', "%{$query}%")
-                         ->paginate(3);
-
-        $hasSearched = true; // Indicateur de recherche
-    
-        return view('dashboard.liste', compact('joueurs', 'hasSearched'));
-    }
-    
+    }*/
 
     
 }

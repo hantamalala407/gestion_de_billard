@@ -151,7 +151,7 @@
             </div>
             <div class="container">
                 <div class="form-container">
-                    <p>Identifiez-vous si vous avez un compte</p>
+                    <b><p style="color: black">Identifiez-vous si vous avez un compte</p></b>
                 </div>
                 <div class="links">
                     <a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a>
