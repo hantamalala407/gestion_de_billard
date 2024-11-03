@@ -194,54 +194,6 @@
             <div class="row">
 
 
-              <!--div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          
-                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalJoueurs ?? 'non défini' }}</p>
-
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total des joueurs</h6>
-                  </div>
-                </div>
-              </div-->
-
-              
-              <!--div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                            
-                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $totalGames ?? 'non défini' }}</p>
-
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total des parties</h6>
-                  </div>
-                </div>
-              </div-->
-
-              
-
-
               <div class="row">
                 <div class="col-lg-6 grid-margin stretch-card">
                   <div class="card">
@@ -255,7 +207,7 @@
                 <div class="col-lg-6 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                      <h4 class="card-title">Augmentation des parties joués</h4>
+                      <h4 class="card-title">Augmentation des parties jouées</h4>
                       <!--canvas id="barChart" style="height:230px"></canvas-->
                       <canvas id="usersChart" style="width: 100%; height: 300px;"></canvas>
                     </div>

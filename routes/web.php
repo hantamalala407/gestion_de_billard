@@ -27,8 +27,8 @@ Route::get('register', [AuthController::class, 'showRegisterForm'])->name('regis
 //Route::post('register', [AuthController::class, 'register']);
 //Route::post('logout', [AuthController::class, 'showLoginForm'])->name('logout');
 Route::post('logout', [AuthController::class, 'home'])->name('logout');
+Route::get('logout', [AuthController::class, 'home'])->name('logout');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-//Route::get('index', [AuthController::class, 'show']);
 Route::get('/user/{id}', [AuthController::class, 'show'])->name('user.show');
 Route::get('/index', [AuthController::class, 'index'])->name('index');
 
@@ -50,7 +50,9 @@ Route::get('/dashboard/liste', function() {
 // route pour le controller du Palyer
 Route::get('/dashboard/liste', [PlayerController::class, 'liste_joueur']);
 Route::get('/dashboard/update/{id}', [PlayerController::class, 'update_joueur']);
-Route::post('/update/traitement', [PlayerController::class, 'update_joueur_traitement']);
+//Route::post('/update/traitement', [PlayerController::class, 'update_joueur_traitement']);
+Route::post('/update/traitement', [PlayerController::class, 'update_joueur_traitement'])->name('joueur.update.traitement');
+
 Route::get('/dashboard/delete/{id}', [PlayerController::class, 'delete_joueur']);
 Route::get('/dashboard/ajout', [PlayerController::class, 'ajouter_joueur']);
 Route::post('/ajout/traitement', [PlayerController::class, 'ajouter_joueur_traitement']);
@@ -64,6 +66,7 @@ Route::get('/dashboard/statistique', function() {
     return view('dashboard.statistique');
 });
 
+Route::resource('games', GameController::class);
 Route::get('/games', [GameController::class, 'index'])->name('games.index'); 
 Route::get('/games/create', [GameController::class, 'create'])->name('games.create'); 
 Route::post('/games', [GameController::class, 'list'])->name('games.store'); 

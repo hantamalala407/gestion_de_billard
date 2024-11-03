@@ -72,7 +72,9 @@
             <div class="card-body">
 
               <form class="forms-sample" action="{{ route('games.store') }}" method="POST">
+                
                 @csrf
+
                 <div class="form-group">
                   <label for="title" class="form-label">Titre de la Partie</label>
                   <input type="text" name="title" id="title" class="form-control" required>
@@ -81,6 +83,14 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
 
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="form-label">Nom du joueur</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -103,9 +113,12 @@
 
                 </div>
 
+                
+
                 <div class="form-group">
                     <label for="status" class="form-label">Statut</label>
-                    <select name="status" id="status" class="form-select" required>
+                    <select class="js-example-basic-single" style="width:100%" name="status" id="status" required>
+                        <option value="">Sélectionnez un statut</option>
                         <option value="upcoming">À Venir</option>
                         <option value="ongoing">En Cours</option>
                         <option value="finished">Terminé</option>
@@ -114,31 +127,21 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
-                <!--select id="monthSelector">
-                    <option value="1">Janvier</option>
-                    <option value="2">Février</option>
-                    <option value="3">Mars</option>
-                    <option value="4">Avril</option>
-                    <option value="5">Mai</option>
-                    <option value="6">Juin</option>
-                    <option value="7">Juillet</option>
-                    <option value="8">Août</option>
-                    <option value="9">Septembre</option>
-                    <option value="10">Octobre</option>
-                    <option value="11">Novembre</option>
-                    <option value="12">Décembre</option>
-                </select-->
+               
                 <button type="submit" class="btn btn-primary mr-2">Créer la partie</button>
                 <a href="/games" class="btn btn-danger">Revenir à la liste des parties </a>
               </form>
             </div>
+
           </div>
+
         </div>
+
     </div>
 
 
     </div>
 
 </div>
+
 @endsection

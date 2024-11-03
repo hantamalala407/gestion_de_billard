@@ -126,6 +126,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="name" class="form-label">Nom du joueur</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ $game->name }}" required>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="start_time" class="form-label">Date et Heure de Début</label>
                     <input type="datetime-local" name="start_time" id="start_time" class="form-control" value="{{ $game->start_time }}" required>
 
@@ -147,7 +155,8 @@
 
                 <div class="form-group">
                     <label for="status" class="form-label">Statut</label>
-                    <select name="status" id="status" class="form-select" value="{{ $game->status }}" required>
+                    <select class="js-example-basic-single" style="width:100%" name="status" id="status" value="{{ $game->status }}" required>
+                        <option value="">Sélectionnez un statut</option>
                         <option value="upcoming">À Venir</option>
                         <option value="ongoing">En Cours</option>
                         <option value="finished">Terminé</option>

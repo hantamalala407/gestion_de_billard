@@ -31,19 +31,58 @@
                 color: #8f8f8f;
             }
 
-            .container{
+            .form-container{
+                position: relative;
+                overflow: hidden;
                 background-color: darkgrey;
                 padding: 20px;
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 text-align: center;
                 width: 500px;
+                height: 300px;
+                justify-content: center;
+                /*display: flex-start;*/
             }
 
-            .container p{
+            .form-container p{
                 margin: 10px 0;
                 font-size: 15px;
                 color: white;
+            }
+
+            .form-container::before{
+                content: '';
+                position: absolute;
+                top: -40%;
+                left: -10%;
+                width: 500px;
+                height: 450px;
+                background: linear-gradient(60deg,transparent,#d9138a,#d9138a);
+                transform-origin: bottom-right;
+                animation: animate 6s linear infinite;
+            }
+            .form-container::after{
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 40%;
+                width: 500px;
+                height: 450px;
+                background: linear-gradient(60deg,transparent,#45f3ff,#45f3ff);
+                transform-origin: bottom-right;
+                animation: animate 6s linear infinite;
+                animation-delay: -3s;
+            }
+            .form-container-traitement{
+                position: absolute;
+                inset: 2px;
+                border-radius: 50px 5px;
+                background: #23242d;
+                z-index: 10;
+                padding: 20px 10px;
+                display: flex;
+                flex-direction: column;
             }
 
             h6{
@@ -62,63 +101,75 @@
                 text-align: center;
             }
 
-            .all1::before{
+
+            .home-container{
+                position: relative;
+                width: 600px;
+                height: 350px;
+                background: #1c1c1c;
+                border-radius: 50px 5px;
+                overflow: hidden;
+                text-align: center;
+                justify-content: center;
+            }
+            .home-container::before{
                 content: '';
                 position: absolute;
-                /*top: 50%;*/
-                /*left: 50%;*/
-                right: 75%;
-                bottom: 50%;
-                width: 250px;
-                height: 250px;
+                top: -40%;
+                left: -10%;
+                width: 500px;
+                height: 450px;
                 background: linear-gradient(60deg,transparent,#45f3ff,#45f3ff);
                 transform-origin: bottom-right;
                 animation: animate 6s linear infinite;
             }
-            .all1::after{
+            .home-container::after{
                 content: '';
                 position: absolute;
-                /*top: 50%;
-                left: 50%;*/
-                left: 75%;
-                bottom: 10%;
-                width: 250px;
-                height: 250px;
+                top: 50%;
+                left: 40%;
+                width: 500px;
+                height: 450px;
                 background: linear-gradient(60deg,transparent,#d9138a,#d9138a);
                 transform-origin: bottom-right;
                 animation: animate 6s linear infinite;
                 animation-delay: -3s;
             }
 
-            .links{
-                border: 2px solid #f9f9f9;
-                background: #f9f9f9;
-                margin-bottom: 10px;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-radius: 10px;
-                margin-left: 200px;
-                margin-right: 200px;
-            }
-            .links:hover{
-                background: #0d0b20;
-                border: #0d0b20;
+            form{
+                position: absolute;
+                inset: 2px;
+                border-radius: 50px 5px;
+                background: #23242d;
+                z-index: 10;
+                padding: 30px 30px;
+                display: flex;
+                flex-direction: column;
             }
 
-            .links a{
-                margin: 25px 0;
-                font-size: 1em;
-                color: #0d0b20;
+
+            button{
+                font-size: 15px;
+                border: none;
+                outline: none;
+                /*background: #45f3ff;*/
+                background: linear-gradient(90deg,#45f3ff,#d9138a);
+                padding: 5px;
+                border-radius: 90px;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            
+            /*button:active{
+                background: linear-gradient(90deg,#45f3ff,#d9138a);
+                opacity: 0.8;
+            }*/
+            button a{    
                 text-decoration: none;
+                color: #0d0b20;
             }
 
-            .links a:hover{
-                color: #45f3ff;
-            }
-            .links a:nth-child(1):hover{
-                /*text-decoration: underline 2px;*/
-                text-underline-offset: 5px;
-            }
 
             @keyframes animate 
             {
@@ -142,24 +193,28 @@
     
     <body>
 
-        <div class="all1">
-            <div class="logo" style="align-items: center; text-align: center">
-                <img src="images/logo_IDEA.png" alt="">
-            </div>
-            <div>
-                <h5>Bienvenue sur l'application de gestion d'utilisateur</h5>
-            </div>
-            <div class="container">
+        <div class="home-container">
+            <form action="">
+                <div class="logo" style="align-items: center; text-align: center">
+                    <img src="images/logo_IDEA.png" alt="">
+                </div>
+                <div>
+                    <h5>Bienvenue sur l'application de gestion d'événements</h5>
+                </div>
                 <div class="form-container">
-                    <b><p style="color: black">Identifiez-vous si vous avez un compte</p></b>
+                    <div class="form-container-traitement">
+                        <div>
+                            <b><p style="color: darkgrey;">Identifiez-vous si vous avez un compte</p></b>
+                        </div>
+                        <div class="links">
+                            <button><a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="links">
-                    <a href="{{ route('login') }}" class="btn btn-secondary">Connexion</a>
+                <div>
+                    <h6>Impulse Digital Experience Agency - Madagascar</h6>
                 </div>
-            </div>
-            <div>
-                <h6>Impulse Digital Experience Agency - Madagascar</h6>
-            </div>
+            </form>
         </div>
 
 

@@ -73,6 +73,20 @@
                       <label for="email">Email</label>
                       <input type="email" class="form-control" id="email" name="email" required>
                     </div>
+                    
+                    <div class="form-group">
+                      <label for="categorie">Catégorie</label>
+                      <input class="form-control" type="text" id="categorie" name="categorie" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="sexe">Sexe</label>
+                      <select class="js-example-basic-single" style="width:100%" id="sexe" name="sexe" required>
+                          <option value="">Sélectionnez un sexe</option>
+                          <option value="homme">Homme</option>
+                          <option value="femme">Femme</option>
+                      </select>
+                    </div>
+
                     <button type="submit" class="btn btn-primary mr-2">Ajouter</button>
                     <a href="/dashboard/liste" class="btn btn-danger">Revenir à la liste des joueurs </a>
                   </form>

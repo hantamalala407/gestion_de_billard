@@ -17,18 +17,33 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    
     public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('index');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+{
+    $credentials = $request->only('email', 'password');
+    if (Auth::attempt($credentials)) {
+        return response()->json(['success' => true], 200);
+        return redirect()->intended('index');
     }
+
+    return response()->json(['success' => false, 'message' => 'Les informations de connexion ne correspondent pas à nos enregistrements.'], 401);
+
+    $data = [
+        'months' => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        'players' => [],
+        'gamesPlayed' => [],
+    ];
+
+    // Récupérer le nombre de joueurs par mois
+    for ($i = 1; $i <= 12; $i++) {
+        $data['players'][] = Joueur::whereMonth('created_at', $i)->count();
+        $data['gamesPlayed'][] = Game::whereMonth('created_at', $i)->count();
+    }
+
+    return view('index', compact('data'));
+
+}   
+
 
     public function showRegisterForm()
     {
@@ -73,37 +88,6 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Une erreur est survenue : ' . $e->getMessage());
         }
     }
-    
-
-
-    
-    /*public function register(Request $request)*/
-    /*{
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Limiter la taille de l'image
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        // Traitement de l'image
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $user->image = $imagePath; // Assurez-vous d'avoir une colonne 'image' dans votre table 'users'
-        }
-
-        $user->save();
-
-        Auth::login($user);
-
-        return redirect()->intended('index');
-    }*/
 
     public function home()
     {

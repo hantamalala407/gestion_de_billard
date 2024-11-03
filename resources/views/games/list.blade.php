@@ -39,10 +39,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr id="list">
-                            <th class="titres">Titre</th>
+                            <th class="titres">Titre de la partie</th>
+                            <th class="titres">Nom du joueur</th>
                             <th class="titres">Date de Début</th>
                             <th class="titres">Date de Fin</th>
                             <th class="titres">Statut</th>
+                            
                             <th class="titres">Actions</th>
                         </tr>
                     </thead>
@@ -51,9 +53,11 @@
                         @foreach($games as $game)
                         <tr>
                             <td>{{ $game->title }}</td>
+                            <td>{{ $game->name }}</td>
                             <td class="titres">{{ $game->start_time }}</td>
                             <td class="titres">{{ $game->end_time ?? 'N/A' }}</td>
                             <td class="titres">{{ ucfirst($game->status) }}</td>
+                            
                             <td>
                                 <a href="/games/edit/{{ $game->id }}" class="btn btn-info"><span class="mdi mdi-pen"></span></a>
 
@@ -70,13 +74,6 @@
                 </table>
 
                 <br>
-
-                
-
-
-                <div class="container">
-                    <canvas id="gameChart"></canvas>
-                </div>
             </div>
         </div>
     </div>
@@ -117,7 +114,7 @@
     function confirmDelete(gameId) {
         swal({
             title: "Êtes-vous sûr ?",
-            text: "Vous allez supprimer ce joueur !",
+            text: "Vous allez supprimer ce partie !",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",

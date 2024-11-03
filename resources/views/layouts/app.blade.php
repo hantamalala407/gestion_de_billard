@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendors/owl-carousel-2/owl.theme.default.min.css') }}">
+
+        <link rel="stylesheet" href="../../assets/vendors/select2/select2.min.css">
+        <link rel="stylesheet" href="../../assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+        
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <!-- endinject -->
@@ -56,7 +60,7 @@
                   <span class="menu-icon">
                     <i class="mdi mdi-account-circle"></i>
                   </span>
-                  <span class="menu-title">joueurs</span>
+                  <span class="menu-title">Gestion des joueurs</span>
                   <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="auth">
@@ -220,6 +224,10 @@
         <script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
         <script src="{{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+
+        <script src="../../assets/vendors/select2/select2.min.js"></script>
+        <script src="../../assets/js/select2.js"></script>
+
         <!-- End plugin js for this page -->
         <!-- inject:js -->
         <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>

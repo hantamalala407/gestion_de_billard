@@ -43,6 +43,8 @@
                             <th class="noms">Nom</th>
                             <th class="noms">Prénom</th>
                             <th class="noms">Email</th>
+                            <th class="noms">Catégorie</th>
+                            <th class="noms">Sexe</th>
                             <th class="noms">Actions</th>
                         </tr>
                     </thead>
@@ -57,6 +59,8 @@
                                 <td class="noms">{{ $joueur->nom }}</td>
                                 <td class="noms">{{ $joueur->prenom }}</td>
                                 <td class="noms">{{ $joueur->email }}</td>
+                                <td class="noms">{{ $joueur->categorie }}</td>
+                                <td class="noms">{{ $joueur->sexe }}</td>
                                 <td>
                                     <a href="/dashboard/update/{{ $joueur->id }}" class="btn btn-info"><span class="mdi mdi-pen"></span></a>
                                     <a href="#" class="btn btn-danger" onclick="confirmDelete('{{ $joueur->id }}')">
