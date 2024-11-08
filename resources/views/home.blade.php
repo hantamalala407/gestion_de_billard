@@ -159,12 +159,7 @@
                 font-weight: 600;
                 cursor: pointer;
             }
-
             
-            /*button:active{
-                background: linear-gradient(90deg,#45f3ff,#d9138a);
-                opacity: 0.8;
-            }*/
             button a{    
                 text-decoration: none;
                 color: #0d0b20;

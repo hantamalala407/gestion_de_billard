@@ -10,27 +10,6 @@
 
 </head>
 <body>
-    <!--div class="auth-container">
-        <div id="message" class="alert" style="display: none;"></div>
-        <form id="loginForm" action="{{ route('login') }}" method="POST" onsubmit="return handleLogin(event)">
-            @csrf
-            <h2>Login</h2>
-            <div class="inputBox">
-                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-                <span for="email">Email:</span>
-                <i></i>
-            </div>
-            <div class="inputBox">
-                <input type="password" id="password" name="password" required>
-                <span for="password">Mot de passe:</span>
-                <i></i>
-            </div>
-            <button type="submit">Se connecter</button>
-            <div class="links">
-                <p>Vous n'avez pas de compte? <a href="{{ route('register') }}">S'enregistrer</a></p>
-            </div>
-        </form>
-    </div-->
     
     <div id="message" class="alert" style="display: none;"></div>
     

@@ -36,8 +36,8 @@
                       <label for="sexe">Sexe</label>
                       <select class="js-example-basic-single" style="width:100%" id="sexe" name="sexe" value="{{ $joueurs->sexe }}">
                           <option value="">Sélectionnez un sexe</option>
-                          <option value="homme">Homme</option>
-                          <option value="femme">Femme</option>
+                          <option value="homme" {{ $joueurs->sexe == 'homme' ? 'selected' : '' }}>Homme</option>
+                          <option value="femme" {{ $joueurs->sexe == 'femme' ? 'selected' : '' }}>Femme</option>
                       </select>
                     </div>
 

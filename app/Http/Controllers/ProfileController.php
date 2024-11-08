@@ -17,32 +17,6 @@ class ProfileController extends Controller
         return view('index', ['user' => Auth::user()]);
     }
 
-   /* public function update(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $user = Auth::user();
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($user->image) {
-                Storage::delete($user->image);
-            }
-            // Enregistrer la nouvelle image
-            $user->image = $request->file('image')->store('images');
-        }
-
-        $user->save();
-
-        return redirect()->route('profile.edit')->with('success', 'Profil mis à jour avec succès.');
-    }*/
-
     public function update(Request $request)
 {
     $request->validate([

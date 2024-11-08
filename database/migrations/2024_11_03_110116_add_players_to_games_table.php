@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('games', function (Blueprint $table) {
-            $table->string('name')->after('title'); // Ajoute la colonne 'name' après 'title'
+            //
+            $table->string('player1')->after('name'); // Ajoute la colonne player1
+            $table->string('player2')->after('player1'); // Ajoute la colonne player2
         });
     }
 
@@ -23,7 +25,7 @@ return new class extends Migration
     {
         Schema::table('games', function (Blueprint $table) {
             //
-            $table->dropColumn('name');
+            $table->dropColumn(['player1', 'player2']);
         });
     }
 };

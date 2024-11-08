@@ -9,16 +9,16 @@ class Game extends Model
 {
     use HasFactory;
 
-    //protected $fillable = ['title', 'start_time', 'end_time', 'status'];
-
     protected $fillable = [
         'title',
-        'name',
+        'player1', 
+        'player2', 
         'start_time',
         'end_time',
         'status',
     ];
 
+    // Sinon, vous pouvez la supprimer.
     public function players()
     {
         return $this->hasMany(Player::class);
